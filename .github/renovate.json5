@@ -517,6 +517,15 @@
       automergeType: 'pr',
     },
 
+    // better-auth publishes several releases a week, so every soak-cleared
+    // version was opening its own PR + full CI run. Saturday-only takes the
+    // newest soaked release once a week; the weekend automergeSchedule lands it.
+    {
+      description: 'Weekly schedule for better-auth monorepo updates',
+      matchPackageNames: ['better-auth', '@better-auth/**'],
+      schedule: ['* * * * 6'],
+    },
+
     // Digest and pin updates (Docker image digests, action SHAs) usually
     // have no release timestamp — Docker Hub library images skip label
     // lookup entirely — so the 72h soak can never be satisfied. Worse,
